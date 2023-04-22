@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "name": "X Shirt",
+      "price": 98.90
+    },
+    {
+      "id": 1,
+      "name": "M Shirt",
+      "price": 79.90
+    },
+    {
+      "id": 2,
+      "name": "X Shirt",
+      "price": 98.90
+    },
+    {
+      "id": 3,
+      "name": "M Shirt",
+      "price": 79.90
+    },
+    {
+      "id": 4,
+      "name": "X Shirt",
+      "price": 98.90
+    },
+    {
+      "id": 5,
+      "name": "M Shirt",
+      "price": 79.90
+    }
+  ]
+}
