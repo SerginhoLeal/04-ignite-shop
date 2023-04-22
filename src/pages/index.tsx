@@ -1,15 +1,26 @@
+import { GetServerSideProps, GetStaticProps } from 'next';
+import { Fragment, useEffect, useState } from 'react';
+
 import Image from 'next/image';
 import { useKeenSlider } from 'keen-slider/react';
 
 import * as Styles from '@/styles/pages/home';
+import { api } from '@/services/api';
 
 import Image_One from '../assets/2_explorer-t-shirt 1.png';
-import Image_Two from '../assets/Camisa-Maratona 1.png';
-import Image_Three from '../assets/IgniteLab-T-shirt 1.png';
 
 import 'keen-slider/keen-slider.min.css';
+import Head from 'next/head';
 
-export default function Home() {
+interface HomeProps {
+  products: {
+    id: number;
+    name: string;
+    price: string;
+  }[];
+}
+
+export default function Home({ products }: HomeProps) {
   const [ sliderRef ] = useKeenSlider({
     slides: {
       perView: 3,
@@ -18,41 +29,58 @@ export default function Home() {
   });
 
   return (
-    <Styles.HomeContainer ref={sliderRef} className='keen-slider'>
-      <Styles.Products className='keen-slider__slide'>
-        <Image src={Image_One} width={520} height={480} alt='' />
+    <Fragment>
+      <Head>
+        <title>Home | Ignite Shop</title>
+      </Head>
+      <Styles.HomeContainer ref={sliderRef} className='keen-slider'>
+        {products.map((prod, index) => (
+          <Styles.Products key={index} href={`/products/${prod.id}`} className='keen-slider__slide'>
+            <Image src={Image_One} width={520} height={480} alt='' />
 
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Styles.Products>
-
-      <Styles.Products className='keen-slider__slide'>
-        <Image src={Image_Two} width={520} height={480} alt='' />
-
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Styles.Products>
-
-      <Styles.Products className='keen-slider__slide'>
-        <Image src={Image_Three} width={520} height={480} alt='' />
-
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Styles.Products>
-      <Styles.Products className='keen-slider__slide'>
-        <Image src={Image_Three} width={520} height={480} alt='' />
-
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Styles.Products>
-    </Styles.HomeContainer>
+            <footer>
+              <strong>{prod.name}</strong>
+              <span>{prod.price}</span>
+            </footer>
+          </Styles.Products>
+        ))}
+      </Styles.HomeContainer>
+    </Fragment>
   )
+};
+
+export const getStaticProps: GetStaticProps = async() => {
+  const { data } = await api.get('data');
+  const products = data.map((product: any) => ({
+    id: product.id,
+    name: product.name,
+    price: new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(product.price)
+  }))
+
+  return {
+    props: {
+      products
+    },
+    revalidate: 60 * 60 + 2
+  }
 }
+
+/**
+ * @augments SSR
+ *  export const getServerSideProps: GetServerSideProps = async() => {
+ *    const { data } = await api.get('data');
+ *    const products = data.map(product => ({
+ *      name: product.name,
+ *      price: product.price
+ *    }))
+ *  
+ *    return {
+ *      props: {
+ *        products
+ *      }
+ *    }
+ *  }
+ */
