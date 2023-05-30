@@ -6,13 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "server": "json-server ./src/services/server.json --host 192.168.15.187 --port 3333 --delay 1000"
   },
   "dependencies": {
     "@stitches/react": "^1.2.8",
     "@types/node": "18.15.11",
     "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
+    "axios": "^1.4.0",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "keen-slider": "^6.8.5",

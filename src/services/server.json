@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "title":"Camiseta Maratona Explore",
+      "description": "xxxxxxxxxxxxxxxxxxxx xxxxxxx xxxxx xxxxxxxxxxxx xxxxxxxxxx xxxxx",
+      "price": 79.90,
+      "image": [
+        "https://res.cloudinary.com/zasetrewsqw/image/upload/v1684416822/Camisa-Maratona_1_vhiel0.png"
+      ]
+    },
+    {
+      "id": 1,
+      "title":"Camiseta Maratona Explore",
+      "description": "xxxxxxxxxxxxxxxxxxxx xxxxxxx xxxxx xxxxxxxxxxxx xxxxxxxxxx xxxxx",
+      "price": 79.90,
+      "image": [
+        "https://res.cloudinary.com/zasetrewsqw/image/upload/v1684416823/IgniteLab-T-shirt_1_urcxxk.png"
+      ]
+    },
+    {
+      "id": 2,
+      "title":"Camiseta Maratona Explore",
+      "description": "xxxxxxxxxxxxxxxxxxxx xxxxxxx xxxxx xxxxxxxxxxxx xxxxxxxxxx xxxxx",
+      "price": 79.90,
+      "image": [
+        "https://res.cloudinary.com/zasetrewsqw/image/upload/v1684416823/2_explorer-t-shirt_1_aaocrh.png"
+      ]
+    }
+  ]
+}
